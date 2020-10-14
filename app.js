@@ -21,21 +21,25 @@ db.once('open', () => {
 
 // require express-handlebars here
 const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurants.json')
+const restaurant = require('./models/restaurant')
+// const restaurantList = require('./restaurants.json')
 // setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.error(error))
 })
 
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  console.log('req.params.restaurant_id', req.params.restaurant_id)
-  const restaurant = restaurantList.results.find(
-    (restaurant) => restaurant.id.toString() === req.params.restaurant_id
-  )
-  res.render('show', { restaurant: restaurant })
+app.get('/restaurants/:id', (req, res) => {
+  const ID = Number(req.params.id)
+  return Restaurant.findOne({ id: ID })
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch(error => console.error(error))
 })
 
 app.get('/search', (req, res) => {
@@ -51,5 +55,5 @@ app.get('/search', (req, res) => {
 app.use(express.static('public'))
 
 app.listen(port, () => {
-  console.log(`Port:${port} is working now`)
+  console.log(`http://localhost:${port} is working now`)
 })
