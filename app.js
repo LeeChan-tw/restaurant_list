@@ -82,12 +82,11 @@ app.get('/restaurants/:id', (req, res) => {
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter((restaurant) => {
-    return restaurant.name.toLowerCase().trim().includes(keyword.toLowerCase().trim())
-  })
-  console.log(keyword)
-  res.render('index', { restaurants: restaurants, keyword: keyword })
+  return Restaurant.find({ name: { $regex: keyword, $options: 'i' } })
+    .lean()
+    .then((restaurants) => res.render('index', { restaurants, keyword }))
 })
+// res.render('index', { restaurant, keyword })
 
 // setting static files
 app.use(express.static('public'))
