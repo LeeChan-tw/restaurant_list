@@ -5,7 +5,8 @@ A simple web application for restaurant finding
 - listing restaurants
 - searching restaurants by name
 - details for the restaurant you choose
-
+- update your favorite restaurant
+- delete the restaurant you don't like
 
 ### Searching
 type the name of the restaurants in search bar
