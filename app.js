@@ -86,7 +86,6 @@ app.get('/search', (req, res) => {
     .lean()
     .then((restaurants) => res.render('index', { restaurants, keyword }))
 })
-// res.render('index', { restaurant, keyword })
 
 // setting static files
 app.use(express.static('public'))
