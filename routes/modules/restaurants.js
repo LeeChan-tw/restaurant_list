@@ -1,6 +1,5 @@
 // 引用 Express 與 Express 路由器
 const express = require('express')
-const { check, validationResult } = require('express-validator')
 const router = express.Router()
 // 引用 model
 const Restaurant = require('../../models/restaurant')
@@ -9,11 +8,7 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 
-router.post('/', [check('name'), check('rating').isNumeric()], (req, res) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() })
-  }
+router.post('/', (req, res) => {
   // 以解構賦值改寫
   const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
