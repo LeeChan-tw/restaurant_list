@@ -35,9 +35,9 @@
           value="{{keyword}}" aria-describedby="search-button">
       </form>
     </nav>
-    <div class="selectMenu col-3 p-auto">
+    <div class="selector mt-2">
       <form action="/sort" method="GET">
-        <select name="sort" class="form-control btn-outline-secondary" id='inputType' onchange="this.form.submit()"
+        <select name="sort" class="custom-select" id='inputType' onchange="this.form.submit()"
           style="cursor: pointer; text-align: center; text-align-last: center">
           <option disabled selected>排列順序</option>
           <option class="dropdown-item" value="name" {{#if (equal 'name')}} selected {{/if}}>店名：順序</option>
