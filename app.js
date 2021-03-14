@@ -27,13 +27,14 @@ const exphbs = require('express-handlebars')
 
 // const restaurantList = require('./restaurants.json')
 // setting template engine
-app.engine('handlebars', exphbs({
+app.engine('hbs', exphbs({
   defaultLayout: 'main',
+  extname: '.hbs',
   helpers: {
     equal: function (v1, v2) { return (v1 === v2) }
   }
 }))
-app.set('view engine', 'handlebars')
+app.set('view engine', 'hbs')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
