@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const app = express()
 const port = process.env.PORT || 3000
 const methodOverride = require('method-override')
@@ -24,6 +25,14 @@ app.engine(
     })
 )
 app.set('view engine', 'hbs')
+
+app.use(
+    session({
+        secret: 'ThisIsMySecret',
+        resave: false,
+        saveUninitialized: true,
+    })
+)
 
 app.use(express.urlencoded({ extended: true }))
 //body-parser built into Express.js
