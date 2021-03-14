@@ -1,43 +1,32 @@
 const express = require('express')
-const mongoose = require('mongoose')
-
 const app = express()
-const port = 3000
-
-const bodyParser = require('body-parser')
+const port = process.env.PORT || 3000
 const methodOverride = require('method-override')
 
 const routes = require('./routes')
-
-mongoose.connect('mongodb://localhost/restaurant_list', { useNewUrlParser: true, useUnifiedTopology: true })
-// 取得資料庫連線狀態
-const db = mongoose.connection
-// 連線異常
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-
-// 連線成功
-db.once('open', () => {
-  console.log('mongodb connected!')
-})
+require('./config/mongoose')
 
 // require express-handlebars here
 const exphbs = require('express-handlebars')
 
 // const restaurantList = require('./restaurants.json')
 // setting template engine
-app.engine('hbs', exphbs({
-  defaultLayout: 'main',
-  extname: '.hbs',
-  helpers: {
-    equal: function (v1, v2) { return (v1 === v2) }
-  }
-}))
+app.engine(
+    'hbs',
+    exphbs({
+        defaultLayout: 'main',
+        extname: '.hbs',
+        helpers: {
+            equal: function (v1, v2) {
+                return v1 === v2
+            },
+        },
+    })
+)
 app.set('view engine', 'hbs')
 
-app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(express.urlencoded({ extended: true }))
+//body-parser built into Express.js
 app.use(methodOverride('_method'))
 
 app.use(routes)
@@ -46,5 +35,5 @@ app.use(routes)
 app.use(express.static('public'))
 
 app.listen(port, () => {
-  console.log(`http://localhost:${port} is working now`)
+    console.log(`http://localhost:${port} is working now`)
 })
