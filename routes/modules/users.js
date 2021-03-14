@@ -13,6 +13,11 @@ router.post(
     })
 )
 
+router.get('/logout', (req, res) => {
+    req.logout()
+    res.redirect('/users/login')
+})
+
 // routes/modules/users.js
 router.post('/register', (req, res) => {
     // 取得註冊表單參數
