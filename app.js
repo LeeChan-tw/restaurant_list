@@ -27,7 +27,44 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(methodOverride('_method'))
 
+<<<<<<< Updated upstream
 app.use(routes)
+=======
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  // 以解構賦值改寫
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+  return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
+    .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+})
+
+app.get('/restaurants/delete/:id', (req, res) => {
+  const ID = req.params.id
+  return Restaurant.findById(ID)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+app.get('/restaurants/:id', (req, res) => {
+  const ID = req.params.id
+  return Restaurant.findById(ID)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch(error => console.error(error))
+})
+
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  return Restaurant.find({ name: { $regex: keyword, $options: 'i' } })
+    .lean()
+    .then((restaurants) => res.render('index', { restaurants, keyword }))
+})
+>>>>>>> Stashed changes
 
 // setting static files
 app.use(express.static('public'))
