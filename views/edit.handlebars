@@ -1,53 +1,50 @@
 <div class="container m-auto p-5 bg-light">
-  <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
-    <form action="/restaurants" method="POST">
-      <div class="row">
-        <div class="col-4">
-          <label for="exampleFormControlInput1">這家餐廳叫什麼呢？</label>
-          <input type="text" class="form-control" placeholder="中文名稱" name="name" id="exampleFormControlInput1"
-            value="{{restaurant.name}}" required>
-        </div>
-        <div class="col-8">
-          <label for="exampleFormControlInput2">Ｗhat is the name of the restaurant?</label>
-          <input type="text" class="form-control" placeholder="英文名稱" name="name_en" id="exampleFormControlInput2"
-            value="{{restaurant.name_en}}" required>
-        </div>
-        <div class="col-3">
-          <label for="exampleFormControlInput3">餐廳的類型呢？</label>
-          <input type="text" class="form-control" placeholder="種類" name="category" id="exampleFormControlInput3"
-            value="{{restaurant.category}}" required>
-        </div>
-        <div class="col-3">
-          <label for="exampleFormControlInput8">1-5分，給幾分？</label>
-          <input type="number" min="1.0" max="5.0" step="0.1" class="form-control" placeholder="1.0 ~ 5.0的評分"
-            name="rating" id="exampleFormControlInput8" value="{{restaurant.rating}}" required>
-        </div>
-        <div class="col-6">
-          <label for="exampleFormControlInput5">有沒有地址呀？</label>
-          <input type="text" class="form-control" placeholder="地址" name="location" id="exampleFormControlInput5"
-            value="{{restaurant.location}}" required>
-        </div>
-        <div class="col-6">
-          <label for="exampleFormControlInput4">給個餐廳圖片的連結嘛</label>
-          <input type="url" class="form-control" placeholder="圖片連結" name="image" id="exampleFormControlInput4"
-            value="{{restaurant.image}}" required>
-        </div>
-        <div class="col-6">
-          <label for="exampleFormControlInput7">幫我Google Map一下嘛</label>
-          <input type="url" class="form-control" placeholder="Google地圖連結" name="google_map"
-            id="exampleFormControlInput7" value="{{restaurant.google_map}}" required>
-        </div>
-        <div class="col-6">
-          <label for="exampleFormControlInput6">那電話呢？</label>
-          <input type="tel" class="form-control" placeholder="電話" name="phone" id="exampleFormControlInput6"
-            value="{{restaurant.phone}}" required>
-        </div>
-        <div class="col-12">
-          <label for="exampleFormControlInput9">介紹一下餐廳嘛</label>
-          <input type="text" class="form-control" placeholder="描述" name="description" id="exampleFormControlInput9"
-            value="{{restaurant.description}}" required>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">改好了嗎，按我送出！</button>
-    </form>
+  <form action="/restaurant/{{restaurant._id}}?_method=PUT" method="POST">
+    <div class="form-group form-row ">
+      <label for="exampleFormControlInput1">這家餐廳叫什麼呢？</label>
+      <input type="text" class="form-control" placeholder="中文名稱" name="name" id="exampleFormControlInput1"
+        value="{{restaurant.name}}">
+    </div>
+    <div class="form-group form-row">
+      <label for="exampleFormControlInput2">Ｗhat is the name of the restaurant?</label>
+      <input type="text" class="form-control" placeholder="英文名稱" name="name_en" id="exampleFormControlInput2"
+        value="{{restaurant.name_en}}">
+    </div>
+    <div class="form-group form-row">
+      <label for="exampleFormControlInput3">是哪種類型的餐廳呢？</label>
+      <input type="text" class="form-control" placeholder="種類" name="category" id="exampleFormControlInput3"
+        value="{{restaurant.category}}">
+    </div>
+    <div class="form-group form-row">
+      <label for="exampleFormControlInput4">給個餐廳圖片的連結嘛</label>
+      <input type="text" class="form-control" placeholder="圖片連結" name="image" id="exampleFormControlInput4"
+        value="{{restaurant.image}}">
+    </div>
+    <div class="form-group form-row">
+      <label for="exampleFormControlInput5">有沒有地址呀？</label>
+      <input type="text" class="form-control" placeholder="地址" name="location" id="exampleFormControlInput5"
+        value="{{restaurant.location}}">
+    </div>
+    <div class="form-group form-row">
+      <label for="exampleFormControlInput6">那電話呢？</label>
+      <input type="text" class="form-control" placeholder="電話" name="phone" id="exampleFormControlInput6"
+        value="{{restaurant.phone}}">
+    </div>
+    <div class="form-group form-row">
+      <label for="exampleFormControlInput7">幫我Google Map一下嘛</label>
+      <input type="text" class="form-control" placeholder="Google地圖連結" name="google_map" id="exampleFormControlInput7"
+        value="{{restaurant.google_map}}">
+    </div>
+    <div class="form-group form-row">
+      <label for="exampleFormControlInput8">1-5分，你給他幾分？</label>
+      <input type="text" class="form-control" placeholder="評分" name="rating" id="exampleFormControlInput8"
+        value="{{restaurant.rating}}">
+    </div>
+    <div class="form-group form-row">
+      <label for="exampleFormControlInput9">介紹一下餐廳嘛</label>
+      <input type="text" class="form-control" placeholder="描述" name="description" id="exampleFormControlInput9"
+        value="{{restaurant.description}}">
+    </div>
+    <button type="submit" class="btn btn-primary">改完啦，按我就送出囉！</button>
+  </form>
 </div>
