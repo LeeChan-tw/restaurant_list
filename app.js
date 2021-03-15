@@ -4,6 +4,9 @@ const app = express()
 const port = process.env.PORT || 3000
 const methodOverride = require('method-override')
 const flash = require('connect-flash')   // 引用套件
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
 
 const routes = require('./routes')
 require('./config/mongoose')
@@ -32,7 +35,7 @@ app.set('view engine', 'hbs')
 
 app.use(
     session({
-        secret: process.env.SESSION_SECRET
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: true,
     })
