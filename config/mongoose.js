@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/restaurant_list', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/restaurant_list', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+})
 // 取得資料庫連線狀態
 const db = mongoose.connection
 // 連線異常

@@ -18,10 +18,13 @@
         <a class="navbar-brand" href="/">
           <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-          腹胖大餐廳指南
+          腹胖大餐廳指南 {{#if isAuthenticated}}歡迎{{ user.name}}的蒞臨{{/if}}
         </a>
-        <a href="/restaurants/new"><button class="btn btn-success btn-sm">我知道更好吃的 <i
-              class="fas fa-thumbs-up"></i></button></a>
+        {{#if isAuthenticated}}
+        <a href="/users/logout" class="btn btn-primary">Logout</a>
+        {{else}}
+        <a href="/users/login" class="btn btn-primary">Login</a>
+        {{/if}}
       </div>
     </nav>
   </header>

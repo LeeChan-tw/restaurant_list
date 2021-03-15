@@ -3,6 +3,7 @@ const session = require('express-session')
 const app = express()
 const port = process.env.PORT || 3000
 const methodOverride = require('method-override')
+const flash = require('connect-flash')   // 引用套件
 
 const routes = require('./routes')
 require('./config/mongoose')
@@ -44,6 +45,13 @@ app.use(methodOverride('_method'))
 
 // 呼叫 Passport 函式並傳入 app，這條要寫在路由之前
 usePassport(app)
+app.use(flash()) // 掛載套件
+app.use((req, res, next) => {
+    // 你可以在這裡 console.log(req.user) 等資訊來觀察
+    res.locals.isAuthenticated = req.isAuthenticated()
+    res.locals.user = req.user
+    next()
+})
 
 app.use(routes)
 

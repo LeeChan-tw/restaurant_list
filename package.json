@@ -1,12 +1,14 @@
 {
-    "name": "restaurant_list_v2",
+    "name": "restaurant_list",
     "version": "1.0.0",
     "description": "restaurant_list",
     "main": "app.js",
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0",
         "@popperjs/core": "^2.5.2",
+        "bcryptjs": "^2.4.3",
         "body-parser": "^1.19.0",
+        "connect-flash": "^0.1.1",
         "express": "^4.17.1",
         "express-handlebars": "^5.1.0",
         "express-session": "^1.17.1",
