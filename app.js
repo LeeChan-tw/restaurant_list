@@ -1,7 +1,7 @@
 const express = require('express')
 const session = require('express-session')
-const app = express()
-const port = process.env.PORT || 3000
+// require express-handlebars here
+const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')   // 引用套件
 if (process.env.NODE_ENV !== 'production') {
@@ -14,10 +14,9 @@ require('./config/mongoose')
 // 載入設定檔，要寫在 express-session 以後
 const usePassport = require('./config/passport')
 
-// require express-handlebars here
-const exphbs = require('express-handlebars')
+const app = express()
+const port = process.env.PORT || 3000
 
-// const restaurantList = require('./restaurants.json')
 // setting template engine
 app.engine(
     'hbs',
